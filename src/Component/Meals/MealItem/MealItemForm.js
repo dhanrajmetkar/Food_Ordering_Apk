@@ -1,8 +1,7 @@
-import classes from "./MealItemForm.module.css"
-import React from "react"
-import { useRef, useState } from "react"
-import Input from "../../UI/Input"
+import { useRef, useState } from 'react';
 
+import Input from '../../UI/Input';
+import classes from './MealItemForm.module.css';
 
 const MealItemForm = (props) => {
     const [amountIsValid, setAmountIsValid] = useState(true);
@@ -24,30 +23,26 @@ const MealItemForm = (props) => {
         }
 
         props.onAddToCart(enteredAmountNumber);
-    }
+    };
+
     return (
-
         <form className={classes.form} onSubmit={submitHandler}>
-
             <Input
-                useRef={amountInputRef}
-                lable="Amount"
+                ref={amountInputRef}
+                label='Amount'
                 input={{
-                    id: "amount" + props.id,
-                    type: "Number",
-                    min: "1",
-                    max: "5",
-                    defaultValue: "1"
-
-                }} />
-            {/* one courly brace for js and other for object  */}
-            <button>Add
-            </button>
-            {!amountIsValid && <p>Please enter the valid amount</p>}
-
+                    id: 'amount_' + props.id,
+                    type: 'number',
+                    min: '1',
+                    max: '5',
+                    step: '1',
+                    defaultValue: '1',
+                }}
+            />
+            <button>+ Add</button>
+            {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
         </form>
+    );
+};
 
-
-    )
-}
-export default MealItemForm
+export default MealItemForm;
